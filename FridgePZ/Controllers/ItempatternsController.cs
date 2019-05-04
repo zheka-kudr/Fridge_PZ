@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FridgePZ.Models;
+using MySql.Data.MySqlClient;
+using System.Configuration;
+using System.Data;
+
 
 namespace FridgePZ.Controllers
 {
     public class ItempatternsController : Controller
     {
+
         private readonly fridgepzContext _context;
 
         public ItempatternsController(fridgepzContext context)
@@ -23,6 +29,28 @@ namespace FridgePZ.Controllers
         {
             var fridgepzContext = _context.Itempattern.Include(i => i.CategoryItemPattern);
             return View(await fridgepzContext.ToListAsync());
+
+        private readonly fridgepzContext _context = new fridgepzContext();
+
+        // GET: Itempatterns
+       
+        public async Task<IActionResult> Index()
+        {
+            try
+            {
+               
+                var query_1 = from itempattern in _context.Itempattern
+                              select itempattern;
+                var list1 = query_1.Distinct().ToList();
+                return View(list1);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+
         }
 
         // GET: Itempatterns/Details/5
@@ -151,9 +179,60 @@ namespace FridgePZ.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        public async Task<IActionResult> UpdateStatus()
+        {
+            checkExpirationDate();
+            
+            return Redirect("/Home/Index");
+        }
+
+
         private bool ItempatternExists(int id)
         {
             return _context.Itempattern.Any(e => e.ItemPatternId == id);
+        }
+
+
+        public List<Item> returnItems()
+        {
+            var query = from _item in _context.Item
+                        join _itempattern in _context.Itempattern
+                        on _item.ItemPatternId equals _itempattern.ItemPatternId
+                        select _item;
+            List<Item> item = query.ToList();
+            return item;
+        }
+
+        public User returnUser()
+        {
+            String email = User.Identity.Name;
+            fridgepzContext db = new fridgepzContext();
+            var query = from p in db.User where p.Email.Equals(email) select p;
+            User user = query.Single();
+            return user;
+        }
+
+        private void checkExpirationDate()
+        {
+            string constr = "Server=fridge-database.mysql.database.azure.com;Port=3306;Database=fridgepz;Uid=PZadmin@fridge-database;Pwd=Qwerty1!;" ;
+            using (MySqlConnection con = new MySqlConnection(constr))
+            {
+                using (MySqlCommand cmd = new MySqlCommand("chceckExpirationDate", con))
+                {  
+                    List<Item> item = returnItems();
+
+                    foreach (Item _item in item) {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("itemIdT", _item.ItemId);
+                        cmd.Parameters.AddWithValue("loginUser", "tomcio18");
+                        cmd.Connection.Open();
+                        var result = cmd.ExecuteNonQuery();
+                        cmd.Connection.Close();
+                        cmd.Parameters.Clear();//<--clear all the parameters.
+                    }
+                }
+            }
         }
     }
 }
