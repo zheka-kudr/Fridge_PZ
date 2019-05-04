@@ -43,8 +43,8 @@ namespace FridgePZ.Controllers
                         join privelege in _context.Privilege on storage.StorageId equals privelege.StorageId
                         join user in _context.User on privelege.UserId equals user.UserId
                         where user == cur_user && item.NotificationId == 1
-                        select item;
-            return View(await query.Distinct().ToListAsync());
+                        select itempattern;
+            return View(await query.ToListAsync());
         }
     }
 }
