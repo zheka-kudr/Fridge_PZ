@@ -163,8 +163,7 @@ namespace FridgePZ.Controllers
 
         public async Task<IActionResult> UpdateStatus()
         {
-            checkExpirationDate();
-            
+                  
             return Redirect("/Home/Index");
         }
 
@@ -194,28 +193,7 @@ namespace FridgePZ.Controllers
             return user;
         }
 
-        private void checkExpirationDate()
-        {
-            string constr = "Server=fridge-database.mysql.database.azure.com;Port=3306;Database=fridgepz;Uid=PZadmin@fridge-database;Pwd=Qwerty1!;" ;
-            using (MySqlConnection con = new MySqlConnection(constr))
-            {
-                using (MySqlCommand cmd = new MySqlCommand("chceckExpirationDate", con))
-                {  
-                    List<Item> item = returnItems();
-                    User user = returnUser();
-
-                    foreach (Item _item in item) {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("itemIdT", _item.ItemId);
-                        cmd.Parameters.AddWithValue("loginUser", user.Login);
-                        cmd.Connection.Open();
-                        var result = cmd.ExecuteNonQuery();
-                        cmd.Connection.Close();
-                        cmd.Parameters.Clear();//<--clear all the parameters.
-                    }
-                }
-            }
-        }
+       
 
        
     }

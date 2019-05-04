@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FridgePZ.Models;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace FridgePZ.Controllers
 {
@@ -35,6 +37,7 @@ namespace FridgePZ.Controllers
 
         public async Task<IActionResult> Status()
         {
+            checkExpirationDate();
             User cur_user = returnUser();
             var query = from itempattern in _context.Itempattern
                         join item in _context.Item on itempattern.ItemPatternId equals item.ItemPatternId
@@ -45,6 +48,39 @@ namespace FridgePZ.Controllers
                         where user == cur_user && item.NotificationId == 1
                         select itempattern;
             return View(await query.ToListAsync());
+        }
+
+        public List<Item> returnItems()
+        {
+            var query = from _item in _context.Item
+                        join _itempattern in _context.Itempattern
+                        on _item.ItemPatternId equals _itempattern.ItemPatternId
+                        select _item;
+            List<Item> item = query.ToList();
+            return item;
+        }
+        public void checkExpirationDate()
+        {
+            string constr = "Server=fridge-database.mysql.database.azure.com;Port=3306;Database=fridgepz;Uid=PZadmin@fridge-database;Pwd=Qwerty1!;";
+            using (MySqlConnection con = new MySqlConnection(constr))
+            {
+                using (MySqlCommand cmd = new MySqlCommand("chceckExpirationDate", con))
+                {
+                    List<Item> item = returnItems();
+                    User user = returnUser();
+
+                    foreach (Item _item in item)
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("itemIdT", _item.ItemId);
+                        cmd.Parameters.AddWithValue("loginUser", user.Login);
+                        cmd.Connection.Open();
+                        var result = cmd.ExecuteNonQuery();
+                        cmd.Connection.Close();
+                        cmd.Parameters.Clear();//<--clear all the parameters.
+                    }
+                }
+            }
         }
     }
 }
