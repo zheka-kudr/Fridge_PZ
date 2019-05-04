@@ -15,6 +15,17 @@ namespace FridgePZ.Controllers
             return View();
         }
 
+        public IActionResult IndexItem()
+        {
+            return RedirectToAction("Index", "Itempatterns");
+
+        }
+
+        public IActionResult CreateItem()
+        {
+            return RedirectToAction("Create", "Itempatterns");
+        }
+
         public IActionResult Privacy()
         {
             return View();
