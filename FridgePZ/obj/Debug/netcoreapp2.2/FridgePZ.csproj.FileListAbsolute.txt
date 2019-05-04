@@ -74,3 +74,4 @@ C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcor
 C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\FridgePZ.RazorTargetAssemblyInfo.cs
 C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\FridgePZ.Views.pdb
 C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\FridgePZ.csproj.CopyComplete
+C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Items\Status.g.cshtml.cs

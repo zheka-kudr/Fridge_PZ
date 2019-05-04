@@ -202,11 +202,12 @@ namespace FridgePZ.Controllers
                 using (MySqlCommand cmd = new MySqlCommand("chceckExpirationDate", con))
                 {  
                     List<Item> item = returnItems();
+                    User user = returnUser();
 
                     foreach (Item _item in item) {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("itemIdT", _item.ItemId);
-                        cmd.Parameters.AddWithValue("loginUser", "tomcio18");
+                        cmd.Parameters.AddWithValue("loginUser", user.Login);
                         cmd.Connection.Open();
                         var result = cmd.ExecuteNonQuery();
                         cmd.Connection.Close();
@@ -215,5 +216,7 @@ namespace FridgePZ.Controllers
                 }
             }
         }
+
+       
     }
 }
