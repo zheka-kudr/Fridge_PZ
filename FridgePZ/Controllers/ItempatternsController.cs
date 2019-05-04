@@ -29,29 +29,10 @@ namespace FridgePZ.Controllers
         {
             var fridgepzContext = _context.Itempattern.Include(i => i.CategoryItemPattern);
             return View(await fridgepzContext.ToListAsync());
-
-        private readonly fridgepzContext _context = new fridgepzContext();
-
-        // GET: Itempatterns
-       
-        public async Task<IActionResult> Index()
-        {
-            try
-            {
-               
-                var query_1 = from itempattern in _context.Itempattern
-                              select itempattern;
-                var list1 = query_1.Distinct().ToList();
-                return View(list1);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
-
         }
+        
+
+      
 
         // GET: Itempatterns/Details/5
         public async Task<IActionResult> Details(int? id)
