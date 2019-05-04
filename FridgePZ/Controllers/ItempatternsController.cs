@@ -13,7 +13,7 @@ using System.Data;
 
 namespace FridgePZ.Controllers
 {
-    public class ItempatternController : Controller
+    public class ItempatternsController : Controller
     {
         private readonly fridgepzContext _context = new fridgepzContext();
 
