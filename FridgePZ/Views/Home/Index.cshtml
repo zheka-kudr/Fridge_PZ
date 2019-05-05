@@ -1,11 +1,43 @@
-﻿@{
+﻿@model IEnumerable<FridgePZ.Models.Itempattern>
+@{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <td>
-        <a asp-action="CreateItem">Add item to application</a> |
-        <a asp-action="IndexItem">Show all items</a>
-    </td>
+    <h1 class="display-4">Fridge</h1>
+    
+    @{
+
+
+        foreach (var item in Model)
+        {
+            fridgepzContext db = new fridgepzContext();
+            var query = from itempattern in db.Itempattern
+                        join _item in db.Item on itempattern.ItemPatternId equals item.ItemPatternId
+                        where _item.ItemPatternId == item.ItemPatternId && _item.NotificationId == 1
+                        select _item;
+            Item product = query.Distinct().FirstOrDefault();
+
+            if (product != null)
+            {
+                <div class="alert alert-danger">
+                    <strong>Expired</strong> @Html.DisplayFor(modelItem => item.Name) 
+                </div>
+            }
+
+
+                                  
+        }
+        
+        
+    }
+        
+
+    
+
+    <p>
+        <button type="button" class="btn btn-primary"><a asp-action="CreateItem" class="text-white">Add item to application</a> </button>
+        <button type="button" class="btn btn-primary"><a asp-action="IndexItem" class="text-white">Show all items</a> </button>
+        <button type="button" class="btn btn-danger"><a asp-action="ExpItems" class="text-white">Your expired products</a> </button>
+
+    </p>
 </div>

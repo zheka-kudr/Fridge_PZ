@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FridgePZ.Models;
+using MySql.Data.MySqlClient;
+using System.Configuration;
+using System.Data;
+
 
 namespace FridgePZ.Controllers
 {
     public class ItempatternsController : Controller
     {
+
         private readonly fridgepzContext _context;
 
         public ItempatternsController(fridgepzContext context)
@@ -24,6 +30,9 @@ namespace FridgePZ.Controllers
             var fridgepzContext = _context.Itempattern.Include(i => i.CategoryItemPattern);
             return View(await fridgepzContext.ToListAsync());
         }
+        
+
+      
 
         // GET: Itempatterns/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -151,9 +160,41 @@ namespace FridgePZ.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        public async Task<IActionResult> UpdateStatus()
+        {
+                  
+            return Redirect("/Home/Index");
+        }
+
+
         private bool ItempatternExists(int id)
         {
             return _context.Itempattern.Any(e => e.ItemPatternId == id);
         }
+
+
+        public List<Item> returnItems()
+        {
+            var query = from _item in _context.Item
+                        join _itempattern in _context.Itempattern
+                        on _item.ItemPatternId equals _itempattern.ItemPatternId
+                        select _item;
+            List<Item> item = query.ToList();
+            return item;
+        }
+
+        public User returnUser()
+        {
+            String email = User.Identity.Name;
+            fridgepzContext db = new fridgepzContext();
+            var query = from p in db.User where p.Email.Equals(email) select p;
+            User user = query.Single();
+            return user;
+        }
+
+       
+
+       
     }
 }

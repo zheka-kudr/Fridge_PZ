@@ -1,0 +1,33 @@
+﻿@model IEnumerable<FridgePZ.Models.Itempattern>
+
+@{
+    ViewData["Title"] = "Status";
+}
+
+<h1>Twoje przeterminowane produkty</h1>
+
+<table class="table">
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            
+        <tr class=" bg-danger">
+            @{
+                fridgepzContext db = new fridgepzContext();
+                var query = from itempattern in db.Itempattern
+                            join _item in db.Item on itempattern.ItemPatternId equals item.ItemPatternId
+                            where _item.ItemPatternId == item.ItemPatternId && _item.NotificationId == 1
+                            select _item;
+                Item product = query.Distinct().FirstOrDefault();
+                DateTime date = product.ExpirationDate ?? DateTime.Now;
+                String only_date = date.ToString("dd/MM/yyyy");
+            }
+            <td>
+                Produkt @Html.DisplayFor(modelItem => item.Name) został przeterminowany @only_date
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
