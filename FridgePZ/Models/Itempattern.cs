@@ -16,6 +16,8 @@ namespace FridgePZ.Models
         public string Unit { get; set; }
         public decimal? Size { get; set; }
         public string Name { get; set; }
+        public string PhotoName { get; set; }
+        public int? SeverityLevel { get; set; }
         public decimal? Capacity { get; set; }
         public decimal? LongLife { get; set; }
 

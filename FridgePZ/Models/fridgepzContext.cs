@@ -31,7 +31,7 @@ namespace FridgePZ.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySQL("server=fridge-database.mysql.database.azure.com ;port=3306;user=PZadmin@fridge-database;password=Qwerty1!;database=fridgepz");
+                optionsBuilder.UseMySQL("server=fridge-database.mysql.database.azure.com;port=3306;user=PZadmin@fridge-database;password=Qwerty1!;database=fridgepz");
             }
         }
 
@@ -62,6 +62,9 @@ namespace FridgePZ.Models
             {
                 entity.ToTable("categoryitempattern", "fridgepz");
 
+                entity.HasIndex(e => e.NotificationId)
+                    .HasName("notificationId");
+
                 entity.HasIndex(e => e.StorageId)
                     .HasName("storageId");
 
@@ -83,6 +86,10 @@ namespace FridgePZ.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.NotificationId)
+                    .HasColumnName("notificationId")
+                    .HasColumnType("int(10)");
+
                 entity.Property(e => e.ShopingFrequency)
                     .HasColumnName("shopingFrequency")
                     .HasColumnType("decimal(2,0)");
@@ -97,6 +104,12 @@ namespace FridgePZ.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.HasOne(d => d.Notification)
+                    .WithMany(p => p.Categoryitempattern)
+                    .HasForeignKey(d => d.NotificationId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("categoryitempattern_ibfk_2");
+
                 entity.HasOne(d => d.Storage)
                     .WithMany(p => p.Categoryitempattern)
                     .HasForeignKey(d => d.StorageId)
@@ -110,6 +123,9 @@ namespace FridgePZ.Models
                 entity.HasIndex(e => e.ItemPatternId)
                     .HasName("itemPatternId");
 
+                entity.HasIndex(e => e.NotificationId)
+                    .HasName("notificationId");
+
                 entity.HasIndex(e => e.ShelfId)
                     .HasName("shelfId");
 
@@ -120,6 +136,10 @@ namespace FridgePZ.Models
                 entity.Property(e => e.ExpirationDate)
                     .HasColumnName("expirationDate")
                     .HasColumnType("date");
+
+                entity.Property(e => e.HowMuchLeft)
+                    .HasColumnName("howMuchLeft")
+                    .HasColumnType("decimal(5,0)");
 
                 entity.Property(e => e.IsOpen)
                     .HasColumnName("isOpen")
@@ -141,6 +161,12 @@ namespace FridgePZ.Models
                     .WithMany(p => p.Item)
                     .HasForeignKey(d => d.ItemPatternId)
                     .HasConstraintName("item_ibfk_2");
+
+                entity.HasOne(d => d.Notification)
+                    .WithMany(p => p.Item)
+                    .HasForeignKey(d => d.NotificationId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("item_ibfk_3");
 
                 entity.HasOne(d => d.Shelf)
                     .WithMany(p => p.Item)
@@ -179,6 +205,15 @@ namespace FridgePZ.Models
                     .HasColumnName("name")
                     .HasMaxLength(40)
                     .IsUnicode(false);
+
+                entity.Property(e => e.PhotoName)
+                    .HasColumnName("photoName")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SeverityLevel)
+                    .HasColumnName("severityLevel")
+                    .HasColumnType("int(3)");
 
                 entity.Property(e => e.Size)
                     .HasColumnName("size")

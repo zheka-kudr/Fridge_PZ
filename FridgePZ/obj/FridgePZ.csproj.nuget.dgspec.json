@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\Documents\\FridgeWspolne\\Main\\Fridge_PZ\\FridgePZ\\FridgePZ.csproj": {}
+    "C:\\Users\\Lenovo\\Documents\\FridgeWspolne\\fridge-master\\Fridge_PZ\\FridgePZ\\FridgePZ.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\Documents\\FridgeWspolne\\Main\\Fridge_PZ\\FridgePZ\\FridgePZ.csproj": {
+    "C:\\Users\\Lenovo\\Documents\\FridgeWspolne\\fridge-master\\Fridge_PZ\\FridgePZ\\FridgePZ.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\FridgeWspolne\\Main\\Fridge_PZ\\FridgePZ\\FridgePZ.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\FridgeWspolne\\fridge-master\\Fridge_PZ\\FridgePZ\\FridgePZ.csproj",
         "projectName": "FridgePZ",
-        "projectPath": "C:\\Users\\Lenovo\\Documents\\FridgeWspolne\\Main\\Fridge_PZ\\FridgePZ\\FridgePZ.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Documents\\FridgeWspolne\\fridge-master\\Fridge_PZ\\FridgePZ\\FridgePZ.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Documents\\FridgeWspolne\\Main\\Fridge_PZ\\FridgePZ\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Documents\\FridgeWspolne\\fridge-master\\Fridge_PZ\\FridgePZ\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -75,6 +75,10 @@
             "MySql.Data.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.16, )"
+            },
+            "bootstrap": {
+              "target": "Package",
+              "version": "[4.3.1, )"
             }
           },
           "imports": [

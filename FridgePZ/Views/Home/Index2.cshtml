@@ -1,0 +1,21 @@
+﻿@model IEnumerable<FridgePZ.Models.Itempattern>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">Fridge</h1>
+    
+    
+        
+
+    <div class="alert alert-success">
+        <strong>All your products are good</strong> 
+    </div>
+
+    <p>
+        <button type="button" class="btn btn-primary"><a asp-action="CreateItem" class="text-white">Add item to application</a> </button>
+        <button type="button" class="btn btn-primary"><a asp-action="IndexItem" class="text-white">Show all items</a> </button>
+        <button type="button" class="btn btn-danger"><a asp-action="ExpItems" class="text-white">Your expired products</a> </button>
+
+    </p>
+</div>
