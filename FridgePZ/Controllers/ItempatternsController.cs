@@ -78,9 +78,9 @@ namespace FridgePZ.Controllers
                 }
                 else
                 {
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", PhotoName.FileName);
-                    var stream = new FileStream(path, FileMode.Create);
-                    await PhotoName.CopyToAsync(stream);
+                    //var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", PhotoName.FileName);
+                    //var stream = new FileStream(path, FileMode.Create);
+                    //await PhotoName.CopyToAsync(stream);
                     itempattern.PhotoName = Path.GetFileNameWithoutExtension(PhotoName.FileName);
                 }
 
@@ -113,7 +113,7 @@ namespace FridgePZ.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemPatternId,CategoryItemPatternId,BarCode,Unit,Size,Name,Capacity,LongLife,PhotoName")] Itempattern itempattern)
+        public async Task<IActionResult> Edit(int id, [Bind("ItemPatternId,CategoryItemPatternId,BarCode,Unit,Size,Name,Capacity,SeverityLevel,LongLife,PhotoName")] Itempattern itempattern)
         {
             if (id != itempattern.ItemPatternId)
             {
