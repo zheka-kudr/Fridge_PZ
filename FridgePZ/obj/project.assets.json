@@ -13259,11 +13259,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Fridge_PZ-master\\FridgePZ\\FridgePZ.csproj",
+      "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Lebrenzi\\Fridge_PZ\\FridgePZ\\FridgePZ.csproj",
       "projectName": "FridgePZ",
-      "projectPath": "C:\\Users\\LENOVO\\Desktop\\Fridge_PZ-master\\FridgePZ\\FridgePZ.csproj",
+      "projectPath": "C:\\Users\\LENOVO\\Desktop\\Lebrenzi\\Fridge_PZ\\FridgePZ\\FridgePZ.csproj",
       "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LENOVO\\Desktop\\Fridge_PZ-master\\FridgePZ\\obj\\",
+      "outputPath": "C:\\Users\\LENOVO\\Desktop\\Lebrenzi\\Fridge_PZ\\FridgePZ\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

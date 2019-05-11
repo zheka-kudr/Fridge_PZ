@@ -28,10 +28,16 @@
                 @Html.DisplayNameFor(model => model.Capacity)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.SeverityLevel)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.LongLife)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CategoryItemPattern)
+            </th>
+            <th>
+                Photo
             </th>
             <th></th>
         </tr>
@@ -55,10 +61,16 @@
                 @Html.DisplayFor(modelItem => item.Capacity)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.SeverityLevel)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.LongLife)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CategoryItemPattern.Name)
+            </td>
+            <td>
+                <img src="/images/@Html.DisplayFor(modelItem => item.PhotoName)" width="60" />
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ItemPatternId">Edit</a> |

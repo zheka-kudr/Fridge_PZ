@@ -44,9 +44,19 @@
                 <span asp-validation-for="Capacity" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="SeverityLevel" class="control-label"></label>
+                <input asp-for="SeverityLevel" class="form-control" />
+                <span asp-validation-for="SeverityLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="LongLife" class="control-label"></label>
                 <input asp-for="LongLife" class="form-control" />
                 <span asp-validation-for="LongLife" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhotoName" class="control-label"></label>
+                <input type="file" asp-for="PhotoName" class="form-control" />
+                <span asp-validation-for="PhotoName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
