@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FridgePZ.Models.Itempattern>
+﻿@model IEnumerable<FridgePZ.Models.Item>
 
 @{
     ViewData["Title"] = "Status";
@@ -18,15 +18,15 @@
                     var query3 = from itempattern in data.Itempattern
                                  join _item in data.Item on itempattern.ItemPatternId equals item.ItemPatternId
                                  where _item.ItemPatternId == item.ItemPatternId && _item.NotificationId == 1
-                                 select _item;
-                    Item product = query3.Distinct().FirstOrDefault();
-                    DateTime date = product.ExpirationDate ?? DateTime.Now;
+                                 select itempattern;
+                    Itempattern product = query3.Distinct().FirstOrDefault();
+                    DateTime date = item.ExpirationDate ?? DateTime.Now;
                     String only_date = date.ToString("dd/MM/yyyy");
                 }
 
                 <td>
                     <div class="alert alert-danger">
-                        <strong>Produkt @Html.DisplayFor(modelItem => item.Name): </strong> został przeterminowany @only_date
+                        <strong>Produkt @Html.DisplayFor(modelItem => product.Name): </strong> został przeterminowany @only_date
                     </div>
                 </td>
 
@@ -45,28 +45,28 @@
                          join privelege in _context.Privilege on storage.StorageId equals privelege.StorageId
                          join user in _context.User on privelege.UserId equals user.UserId
                          where user == cur_user && item.NotificationId == 3
-                         select itempattern;
-            List<Itempattern> item_not3 = query2.ToList();
+                         select item;
+            List<Item> item_not3 = query2.ToList();
 
 
             foreach (var not3 in item_not3)
             {
 
                 <tr>
-                    @{ 
+                    @{
                         var query4 = from itempattern in db.Itempattern
                                      join _item in db.Item on itempattern.ItemPatternId equals _item.ItemPatternId
                                      where _item.ItemPatternId == not3.ItemPatternId && _item.NotificationId == 3
-                                     select _item;
-                        Item product = query4.Distinct().Single();
-                        DateTime date = product.ExpirationDate ?? DateTime.Now;
+                                     select itempattern;
+                        Itempattern product = query4.Distinct().FirstOrDefault();
+                        DateTime date = not3.ExpirationDate ?? DateTime.Now;
                         DateTime nowdate = DateTime.Now.Date;
                         double diff = (date - nowdate).TotalDays;
 
                     }
                     <td>
                         <div class="alert alert-info">
-                            <strong>Produkt @Html.DisplayFor(modelItem => not3.Name): </strong> zostanie przeterminowany za @diff dni
+                            <strong>Produkt @Html.DisplayFor(modelItem => product.Name): </strong> zostanie przeterminowany za @diff dni
                         </div>
                     </td>
 

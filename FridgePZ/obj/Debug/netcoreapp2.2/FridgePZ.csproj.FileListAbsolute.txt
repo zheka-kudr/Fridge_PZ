@@ -195,3 +195,4 @@ C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Deb
 C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\FridgePZ.dll
 C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\FridgePZ.pdb
 C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\FridgePZ.csproj.CopyComplete
+C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index2.g.cshtml.cs
