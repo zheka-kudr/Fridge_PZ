@@ -1,0 +1,134 @@
+{
+  "FilePath": "c:\\Users\\Maric\\Documents\\GitHub\\Fridge_PZ\\FridgePZ\\FridgePZ.csproj",
+  "Configuration": {
+    "ConfigurationName": "MVC-2.1",
+    "LanguageVersion": "2.1",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-2.1"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 703
+  },
+  "RootNamespace": "FridgePZ",
+  "Documents": [
+    {
+      "FilePath": "Views\\Home\\Index2.cshtml",
+      "TargetPath": "Views\\Home\\Index2.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Categoryitempatterns\\Delete.cshtml",
+      "TargetPath": "Views\\Categoryitempatterns\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Account\\Edit.cshtml",
+      "TargetPath": "Views\\Account\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Itempatterns\\Details.cshtml",
+      "TargetPath": "Views\\Itempatterns\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Account\\Login.cshtml",
+      "TargetPath": "Views\\Account\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Itempatterns\\Index.cshtml",
+      "TargetPath": "Views\\Itempatterns\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Itempatterns\\Edit.cshtml",
+      "TargetPath": "Views\\Itempatterns\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Shared\\_CookieConsentPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_CookieConsentPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Categoryitempatterns\\Index.cshtml",
+      "TargetPath": "Views\\Categoryitempatterns\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Itempatterns\\Delete.cshtml",
+      "TargetPath": "Views\\Itempatterns\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Categoryitempatterns\\Edit.cshtml",
+      "TargetPath": "Views\\Categoryitempatterns\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Items\\Status.cshtml",
+      "TargetPath": "Views\\Items\\Status.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Categoryitempatterns\\Create.cshtml",
+      "TargetPath": "Views\\Categoryitempatterns\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Account\\Register.cshtml",
+      "TargetPath": "Views\\Account\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Itempatterns\\Create.cshtml",
+      "TargetPath": "Views\\Itempatterns\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Categoryitempatterns\\Details.cshtml",
+      "TargetPath": "Views\\Categoryitempatterns\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    }
+  ]
+}
