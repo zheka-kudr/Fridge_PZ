@@ -78,10 +78,10 @@ namespace FridgePZ.Controllers
                 }
                 else
                 {
-                    //var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", PhotoName.FileName);
-                    //var stream = new FileStream(path, FileMode.Create);
-                    //await PhotoName.CopyToAsync(stream);
-                    itempattern.PhotoName = Path.GetFileNameWithoutExtension(PhotoName.FileName);
+                    /*var path = Path.GetFileNameWithoutExtension(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", PhotoName.FileName));
+                    var stream = new FileStream(path, FileMode.Create);
+                    await PhotoName.CopyToAsync(stream);*/
+                    itempattern.PhotoName = Path.GetFileName(PhotoName.FileName);
                 }
 
                 await _context.SaveChangesAsync();
@@ -113,7 +113,7 @@ namespace FridgePZ.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemPatternId,CategoryItemPatternId,BarCode,Unit,Size,Name,Capacity,SeverityLevel,LongLife,PhotoName")] Itempattern itempattern)
+        public async Task<IActionResult> Edit(int id, [Bind("ItemPatternId,CategoryItemPatternId,BarCode,Unit,Size,Name,PhotoName,SeverityLevel,Capacity,LongLife")] Itempattern itempattern,  IFormFile photoName)
         {
             if (id != itempattern.ItemPatternId)
             {
@@ -124,8 +124,23 @@ namespace FridgePZ.Controllers
             {
                 try
                 {
+                    
+
+                    if (photoName == null)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        /*var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", photoName.FileName);
+                        var stream = new FileStream(path, FileMode.Create);
+                        await photoName.CopyToAsync(stream);*/
+                        itempattern.PhotoName = Path.GetFileName(photoName.FileName);
+                    }
+
                     _context.Update(itempattern);
                     await _context.SaveChangesAsync();
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {

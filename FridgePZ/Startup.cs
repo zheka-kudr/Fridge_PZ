@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using FridgePZ.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace FridgePZ
 {
@@ -27,6 +29,11 @@ namespace FridgePZ
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddSingleton<IFileProvider>(
+               new PhysicalFileProvider(
+                   Path.Combine("C:/Users/LENOVO/Desktop/Lebrenzi/Fridge_PZ/FridgePZ", "wwwroot")));
+
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<fridgepzContext>(options => options.UseMySQL("Server=fridge-database.mysql.database.azure.com;Port=3306;Database=fridgepz;Uid=PZadmin@fridge-database;Pwd=Qwerty1!;"));
             // установка конфигурации подключения
