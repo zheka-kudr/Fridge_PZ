@@ -2,43 +2,70 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<div class="text-center">
-    <h1 class="display-4">Fridge</h1>
-    
-    @{
+    <div class="text-center">
+        <h1 class="display-4">Fridge</h1>
+
+        @{
 
 
-        foreach (var item in Model)
-        {
+
             fridgepzContext db = new fridgepzContext();
-            var query = from itempattern in db.Itempattern
-                        join _item in db.Item on itempattern.ItemPatternId equals item.ItemPatternId
-                        where _item.ItemPatternId == item.ItemPatternId && _item.NotificationId == 1
-                        select _item;
-            Item product = query.Distinct().FirstOrDefault();
+            var query1 = from itempattern in db.Itempattern
+                         join _item in db.Item on itempattern.ItemPatternId equals _item.ItemPatternId
+                         where _item.NotificationId == 1
+                         select _item;
+            var query2 = from itempattern in db.Itempattern
+                         join _item in db.Item on itempattern.ItemPatternId equals _item.ItemPatternId
+                         where _item.NotificationId == 3
+                         select _item;
+            List<Item> product = query1.ToList();
+            List<Item> awareProduct = query2.ToList();
 
             if (product != null)
             {
-                <div class="alert alert-danger">
-                    <strong>Expired</strong> @Html.DisplayFor(modelItem => item.Name) 
-                </div>
+                if (product.Count == 0)
+                {
+                    if (awareProduct.Count == 0) { }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            <strong>Number of products with alerts: </strong> @awareProduct.Count
+                        </div>
+                    }
+                }
+                else
+                {
+                    if (awareProduct.Count == 0)
+                    {
+                        <div class="alert alert-danger">
+                            <strong>Number of products expired: </strong> @product.Count
+                        </div>
+
+                    }
+                    else
+                    {
+
+                        <div class="alert alert-danger">
+                            <strong>Number of products expired: </strong> @product.Count
+                        </div>
+                        <div class="alert alert-info">
+                            <strong>Number of products with alerts: </strong> @awareProduct.Count
+                        </div>
+                    }
+                }
             }
-
-
-                                  
         }
-        
-        
-    }
-        
 
-    
 
-                <p>
-                    <button type="button" class="btn btn-primary"><a asp-action="CreateItem" class="text-white">Add item to application</a> </button>
-                    <button type="button" class="btn btn-primary"><a asp-action="IndexItem" class="text-white">Show all items</a> </button>
-                    <button type="button" class="btn btn-primary"><a asp-action="CatCreateItem" class="text-white">Add item to application</a> </button>
-                    <button type="button" class="btn btn-primary"><a asp-action="CatIndexItem" class="text-white">Show all items</a> </button>
-                    <button type="button" class="btn btn-danger"><a asp-action="ExpItems" class="text-white">Your expired products</a> </button>
-                </p>
-</div>
+
+
+
+        <p>
+            <button type="button" class="btn btn-primary"><a asp-action="CreateItem" class="text-white">Add item to application</a> </button>
+            <button type="button" class="btn btn-primary"><a asp-action="IndexItem" class="text-white">Show all items</a> </button>
+            <button type="button" class="btn btn-primary"><a asp-action="CatCreateItem" class="text-white">Add item to application</a> </button>
+            <button type="button" class="btn btn-primary"><a asp-action="CatIndexItem" class="text-white">Show all items</a> </button>
+            <button type="button" class="btn btn-danger"><a asp-action="ExpItems" class="text-white">Your expired products</a> </button>
+
+        </p>
+    </div>

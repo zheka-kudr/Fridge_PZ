@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FridgePZ.Models.Itempattern>
+﻿﻿@model IEnumerable<FridgePZ.Models.Item>
 
 @{
     ViewData["Title"] = "Status";
@@ -11,23 +11,68 @@
     <tbody>
         @foreach (var item in Model)
         {
-            
-        <tr class=" bg-danger">
-            @{
-                fridgepzContext db = new fridgepzContext();
-                var query = from itempattern in db.Itempattern
-                            join _item in db.Item on itempattern.ItemPatternId equals item.ItemPatternId
-                            where _item.ItemPatternId == item.ItemPatternId && _item.NotificationId == 1
-                            select _item;
-                Item product = query.Distinct().FirstOrDefault();
-                DateTime date = product.ExpirationDate ?? DateTime.Now;
-                String only_date = date.ToString("dd/MM/yyyy");
-            }
-            <td>
-                Produkt @Html.DisplayFor(modelItem => item.Name) został przeterminowany @only_date
-            </td>
 
-        </tr>
+            <tr>
+                @{
+                    fridgepzContext data = new fridgepzContext();
+                    var query3 = from itempattern in data.Itempattern
+                                 join _item in data.Item on itempattern.ItemPatternId equals item.ItemPatternId
+                                 where _item.ItemPatternId == item.ItemPatternId && _item.NotificationId == 1
+                                 select itempattern;
+                    Itempattern product = query3.Distinct().FirstOrDefault();
+                    DateTime date = item.ExpirationDate ?? DateTime.Now;
+                    String only_date = date.ToString("dd/MM/yyyy");
+                }
+
+                <td>
+                    <div class="alert alert-danger">
+                        <strong>Produkt @Html.DisplayFor(modelItem => product.Name): </strong> został przeterminowany @only_date
+                    </div>
+                </td>
+
+            </tr>
+        }
+        @{
+            String email = User.Identity.Name;
+            fridgepzContext db = new fridgepzContext();
+            var query = from p in db.User where p.Email.Equals(email) select p;
+            User cur_user = query.Single();
+            fridgepzContext _context = new fridgepzContext();
+            var query2 = from itempattern in _context.Itempattern
+                         join item in _context.Item on itempattern.ItemPatternId equals item.ItemPatternId
+                         join shelf in _context.Shelf on item.ShelfId equals shelf.ShelfId
+                         join storage in _context.Storage on shelf.StorageId equals storage.StorageId
+                         join privelege in _context.Privilege on storage.StorageId equals privelege.StorageId
+                         join user in _context.User on privelege.UserId equals user.UserId
+                         where user == cur_user && item.NotificationId == 3
+                         select item;
+            List<Item> item_not3 = query2.ToList();
+
+
+            foreach (var not3 in item_not3)
+            {
+
+                <tr>
+                    @{
+                        var query4 = from itempattern in db.Itempattern
+                                     join _item in db.Item on itempattern.ItemPatternId equals _item.ItemPatternId
+                                     where _item.ItemPatternId == not3.ItemPatternId && _item.NotificationId == 3
+                                     select itempattern;
+                        Itempattern product = query4.Distinct().FirstOrDefault();
+                        DateTime date = not3.ExpirationDate ?? DateTime.Now;
+                        DateTime nowdate = DateTime.Now.Date;
+                        double diff = (date - nowdate).TotalDays;
+
+                    }
+                    <td>
+                        <div class="alert alert-info">
+                            <strong>Produkt @Html.DisplayFor(modelItem => product.Name): </strong> zostanie przeterminowany za @diff dni
+                        </div>
+                    </td>
+
+                </tr>
+            }
+
         }
     </tbody>
 </table>

@@ -124,10 +124,6 @@ namespace FridgePZ.Controllers
             {
                 try
                 {
-                    
-
-                    if (photoName == null)
-                    {
                         return RedirectToAction(nameof(Index));
                     }
                     else
@@ -144,7 +140,6 @@ namespace FridgePZ.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ItempatternExists(itempattern.ItemPatternId))
                     {
                         return NotFound();
                     }
