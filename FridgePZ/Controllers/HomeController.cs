@@ -129,6 +129,17 @@ namespace FridgePZ.Controllers
             return RedirectToAction("Create", "Itempatterns");
         }
 
+        public IActionResult CatIndexItem()
+        {
+            return RedirectToAction("Index", "Categoryitempatterns");
+
+        }
+
+        public IActionResult CatCreateItem()
+        {
+            return RedirectToAction("Create", "Categoryitempatterns");
+        }
+
         public IActionResult ExpItems()
         {
             return RedirectToAction("Status", "Items");

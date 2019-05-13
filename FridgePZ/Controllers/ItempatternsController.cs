@@ -10,7 +10,8 @@ using FridgePZ.Models;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
-
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace FridgePZ.Controllers
 {
@@ -65,11 +66,24 @@ namespace FridgePZ.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemPatternId,CategoryItemPatternId,BarCode,Unit,Size,Name,Capacity,LongLife")] Itempattern itempattern)
+        public async Task<IActionResult> Create([Bind("ItemPatternId,CategoryItemPatternId,BarCode,Unit,Size,Name,PhotoName,SeverityLevel,Capacity,LongLife")] Itempattern itempattern, IFormFile PhotoName)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(itempattern);
+
+                if (PhotoName == null)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    /*var path = Path.GetFileNameWithoutExtension(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", PhotoName.FileName));
+                    var stream = new FileStream(path, FileMode.Create);
+                    await PhotoName.CopyToAsync(stream);*/
+                    itempattern.PhotoName = Path.GetFileName(PhotoName.FileName);
+                }
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -99,7 +113,7 @@ namespace FridgePZ.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemPatternId,CategoryItemPatternId,BarCode,Unit,Size,Name,Capacity,LongLife")] Itempattern itempattern)
+        public async Task<IActionResult> Edit(int id, [Bind("ItemPatternId,CategoryItemPatternId,BarCode,Unit,Size,Name,PhotoName,SeverityLevel,Capacity,LongLife")] Itempattern itempattern,  IFormFile photoName)
         {
             if (id != itempattern.ItemPatternId)
             {
@@ -110,12 +124,22 @@ namespace FridgePZ.Controllers
             {
                 try
                 {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        /*var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", photoName.FileName);
+                        var stream = new FileStream(path, FileMode.Create);
+                        await photoName.CopyToAsync(stream);*/
+                        itempattern.PhotoName = Path.GetFileName(photoName.FileName);
+                    }
+
                     _context.Update(itempattern);
                     await _context.SaveChangesAsync();
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ItempatternExists(itempattern.ItemPatternId))
                     {
                         return NotFound();
                     }
