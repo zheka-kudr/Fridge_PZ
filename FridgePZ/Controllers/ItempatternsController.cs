@@ -113,7 +113,7 @@ namespace FridgePZ.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemPatternId,CategoryItemPatternId,BarCode,Unit,Size,Name,PhotoName,SeverityLevel,Capacity,LongLife")] Itempattern itempattern,  IFormFile photoName)
+        public async Task<IActionResult> Edit(int id, [Bind("ItemPatternId,CategoryItemPatternId,BarCode,Unit,Size,Name,PhotoName,SeverityLevel,Capacity,LongLife")] Itempattern itempattern, IFormFile photoName)
         {
             if (id != itempattern.ItemPatternId)
             {
@@ -124,6 +124,10 @@ namespace FridgePZ.Controllers
             {
                 try
                 {
+
+
+                    if (photoName == null)
+                    {
                         return RedirectToAction(nameof(Index));
                     }
                     else
@@ -140,6 +144,7 @@ namespace FridgePZ.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+                    if (!ItempatternExists(itempattern.ItemPatternId))
                     {
                         return NotFound();
                     }
