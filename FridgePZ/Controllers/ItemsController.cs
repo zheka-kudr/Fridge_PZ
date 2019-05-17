@@ -20,7 +20,13 @@ namespace FridgePZ.Controllers
             _context = context;
         }
 
-        
+        public async Task<IActionResult> Index()
+        {
+            var fridgepzContext = _context.Item;
+            return View(await fridgepzContext.ToListAsync());
+
+        }
+
         private bool ItemExists(int id)
         {
             return _context.Item.Any(e => e.ItemId == id);
@@ -120,6 +126,37 @@ namespace FridgePZ.Controllers
                     }
                 }
             }
+        }
+
+
+        public async Task<IActionResult> Decrease(int? id)
+        {
+            decreasePortion(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        public async void decreasePortion(int? id)
+        {
+            Item cur_item = _context.Item.Find(id);
+            Itempattern pat = await _context.Itempattern.FindAsync(cur_item.ItemPatternId);
+            if (cur_item.HowMuchLeft - 125 >= 0)
+            {
+                cur_item.HowMuchLeft -= 125;
+                if(cur_item.HowMuchLeft == 0)
+                {
+                    var _item = await _context.Item.FindAsync(cur_item.ItemId);
+                    _context.Item.Remove(_item);
+                }
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                var _item = await _context.Item.FindAsync(cur_item.ItemId);
+                _context.Item.Remove(_item);
+                await _context.SaveChangesAsync();
+            }
+          
         }
     }
 }

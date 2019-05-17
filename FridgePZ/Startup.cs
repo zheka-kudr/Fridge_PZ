@@ -30,9 +30,7 @@ namespace FridgePZ
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddSingleton<IFileProvider>(
-               new PhysicalFileProvider(
-                   Path.Combine("C:/Users/LENOVO/Desktop/Lebrenzi/Fridge_PZ/FridgePZ", "wwwroot")));
+          
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<fridgepzContext>(options => options.UseMySQL("Server=fridge-database.mysql.database.azure.com;Port=3306;Database=fridgepz;Uid=PZadmin@fridge-database;Pwd=Qwerty1!;"));

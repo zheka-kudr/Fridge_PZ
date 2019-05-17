@@ -286,3 +286,9 @@ C:\Users\LENOVO\Desktop\Nowy folder (16)\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp
 C:\Users\LENOVO\Desktop\Nowy folder (16)\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\FridgePZ.RazorTargetAssemblyInfo.cs
 C:\Users\LENOVO\Desktop\Nowy folder (16)\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\FridgePZ.Views.pdb
 C:\Users\LENOVO\Desktop\Nowy folder (16)\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\FridgePZ.csproj.CopyComplete
+C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Create.g.cshtml.cs
+C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Delete.g.cshtml.cs
+C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Details.g.cshtml.cs
+C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Edit.g.cshtml.cs
+C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Index.g.cshtml.cs
+C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Items\Index.g.cshtml.cs
