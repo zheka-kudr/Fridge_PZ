@@ -13,36 +13,68 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.HowMuchLeft)
+                BarCode
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ExpirationDate)
+                Measure Unit
             </th>
-           
-
+            <th>
+                How much left
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                CategoryItemPattern
+            </th>
+            <th>
+                Photo
+            </th>
+            <th>
+                Expiration date
+            </th>
             <th>
                 Actions
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
+
+    fridgepzContext _context = new fridgepzContext();
+    Itempattern pat = await _context.Itempattern.FindAsync(item.ItemPatternId);
+    Categoryitempattern cat = await _context.Categoryitempattern.FindAsync(pat.CategoryItemPatternId);
+    DateTime date = item.ExpirationDate ?? DateTime.Now;
+    String only_date = date.ToString("dd/MM/yyyy");
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.HowMuchLeft)
+                @pat.BarCode
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExpirationDate)
+                @pat.Unit
             </td>
-            
+            <td>
+                @item.HowMuchLeft
+            </td>
+            <td>
+                @pat.Name
+            </td>
+            <td>
+                @cat.Name
+            </td>
+            <td>
+                <img src="/images/@pat.PhotoName" width="60" />
+            </td>
+            <td>
+                @only_date
+            </td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a asp-action="Decrease" asp-route-id="@item.ItemId"><button type="button" class="btn btn-secondary btn-danger" >-</button></a>
-                    
+                    <a asp-action="Decrease" asp-route-id="@item.ItemId"><button type="button" class="btn btn-secondary btn-danger">-</button></a>
+
                 </div>
             </td>
-            
+
         </tr>
 }
     </tbody>

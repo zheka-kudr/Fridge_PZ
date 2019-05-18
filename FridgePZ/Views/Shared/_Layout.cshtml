@@ -35,7 +35,7 @@
                             fridgepzContext db = new fridgepzContext();
                             var query = from p in db.User where p.Email.Equals(email) select p;
                             User user = query.Single();
-                            <h6 class="nav-item">Logged in as @user.Login</h6>
+                            <a class="nav-link text-white ">Logged in as @user.Login</a>
                         }
 
                         @if (User.Identity.IsAuthenticated)

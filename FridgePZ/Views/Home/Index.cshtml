@@ -62,7 +62,10 @@
 
         <p>
             <button type="button" class="btn btn-primary"><a asp-action="CreateItem" class="text-white">Add item to application</a> </button>
-            <button type="button" class="btn btn-primary"><a asp-action="IndexItem" class="text-white">Show all items</a> </button>
+            @if (User.Identity.IsAuthenticated)
+            {
+            <button type="button" class="btn btn-primary"><a asp-controller="Items" asp-action="Index" class="text-white">Show all your items</a> </button>
+            }
             <button type="button" class="btn btn-primary"><a asp-action="CatCreateItem" class="text-white">Add item to application</a> </button>
             <button type="button" class="btn btn-primary"><a asp-action="CatIndexItem" class="text-white">Show all items</a> </button>
             <button type="button" class="btn btn-danger"><a asp-action="ExpItems" class="text-white">Your expired products</a> </button>

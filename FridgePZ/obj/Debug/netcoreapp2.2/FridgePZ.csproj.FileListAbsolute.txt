@@ -292,3 +292,9 @@ C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Deb
 C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Edit.g.cshtml.cs
 C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Index.g.cshtml.cs
 C:\Users\Lenovo\Documents\FridgeWspolne\fridge-master\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Items\Index.g.cshtml.cs
+C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Create.g.cshtml.cs
+C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Delete.g.cshtml.cs
+C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Details.g.cshtml.cs
+C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Edit.g.cshtml.cs
+C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Categoryitempatterns\Index.g.cshtml.cs
+C:\Users\Lenovo\Documents\FridgeWspolne\Main\Fridge_PZ\FridgePZ\obj\Debug\netcoreapp2.2\Razor\Views\Items\Index.g.cshtml.cs
