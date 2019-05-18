@@ -33,9 +33,9 @@ namespace FridgePZ.Controllers
         public List<Item> returnItems()
         {
             var query = from _item in _context.Item
-                join _itempattern in _context.Itempattern
-                    on _item.ItemPatternId equals _itempattern.ItemPatternId
-                select _item;
+                        join _itempattern in _context.Itempattern
+                        on _item.ItemPatternId equals _itempattern.ItemPatternId
+                        select _item;
             List<Item> item = query.ToList();
             return item;
         }

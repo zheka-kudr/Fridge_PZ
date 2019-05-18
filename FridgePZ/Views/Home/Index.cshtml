@@ -7,16 +7,26 @@
 
         @{
 
-
-
+            String email = User.Identity.Name;
             fridgepzContext db = new fridgepzContext();
-            var query1 = from itempattern in db.Itempattern
-                         join _item in db.Item on itempattern.ItemPatternId equals _item.ItemPatternId
-                         where _item.NotificationId == 1
+            var query = from p in db.User where p.Email.Equals(email) select p;
+            User user = query.Single();
+            
+
+
+            var query1 = from _user in db.User
+                         join _privilege in db.Privilege on _user.UserId equals _privilege.UserId
+                         join _storage in db.Storage on _privilege.StorageId equals _storage.StorageId
+                         join _shelf in db.Shelf on _storage.StorageId equals _shelf.StorageId
+                         join _item in db.Item on _shelf.ShelfId equals _item.ShelfId
+                         where _item.NotificationId == 1 && user.UserId == _user.UserId
                          select _item;
-            var query2 = from itempattern in db.Itempattern
-                         join _item in db.Item on itempattern.ItemPatternId equals _item.ItemPatternId
-                         where _item.NotificationId == 3
+            var query2 = from _user in db.User
+                         join _privilege in db.Privilege on _user.UserId equals _privilege.UserId
+                         join _storage in db.Storage on _privilege.StorageId equals _storage.StorageId
+                         join _shelf in db.Shelf on _storage.StorageId equals _shelf.StorageId
+                         join _item in db.Item on _shelf.ShelfId equals _item.ShelfId
+                         where _item.NotificationId == 3 && user.UserId == _user.UserId
                          select _item;
             List<Item> product = query1.ToList();
             List<Item> awareProduct = query2.ToList();
@@ -64,8 +74,9 @@
             <button type="button" class="btn btn-primary"><a asp-action="CreateItem" class="text-white">Add item to application</a> </button>
             @if (User.Identity.IsAuthenticated)
             {
-            <button type="button" class="btn btn-primary"><a asp-controller="Items" asp-action="Index" class="text-white">Show all your items</a> </button>
+                <button type="button" class="btn btn-primary"><a asp-controller="Items" asp-action="Index" class="text-white">Show all your items</a> </button>
             }
+            else { }
             <button type="button" class="btn btn-primary"><a asp-action="CatCreateItem" class="text-white">Add item to application</a> </button>
             <button type="button" class="btn btn-primary"><a asp-action="CatIndexItem" class="text-white">Show all items</a> </button>
             <button type="button" class="btn btn-danger"><a asp-action="ExpItems" class="text-white">Your expired products</a> </button>

@@ -22,8 +22,9 @@ namespace FridgePZ.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var fridgepzContext = _context.Item;
-            return View(await fridgepzContext.ToListAsync());
+            
+            List<Item> fridgepzContext = returnUserItems();
+            return View(fridgepzContext);
 
         }
 
@@ -69,6 +70,21 @@ namespace FridgePZ.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+        }
+
+
+        public List<Item> returnUserItems()
+        {
+            User cur_user = returnUser();
+            var query = from _item in _context.Item
+                        join _shelf in _context.Shelf on _item.ShelfId equals _shelf.ShelfId
+                        join _storage in _context.Storage on _shelf.StorageId equals _storage.StorageId
+                        join _privilege in _context.Privilege on _storage.StorageId equals _privilege.StorageId
+                        join _user in _context.User on _privilege.UserId equals _user.UserId
+                        where cur_user.UserId == _user.UserId
+                        select _item;
+            List<Item> item = query.ToList();
+            return item;
         }
 
         public List<Item> returnItems()
